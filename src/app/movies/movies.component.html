@@ -1,0 +1,71 @@
+<section class="listing">
+    <br>
+
+    <h1 class="listing__title text-center" *ngIf="!searchRes">Movies</h1>
+    <section class="row">
+        <section class="col-md-12">
+            <section class="form-group">
+                <section class="input-group">
+                    <input type="text" class="form-control searchdesign" placeholder="Search for movies..." [(ngModel)]="searchStr" name="searchStr" (keyup.enter)="searchMovies()">
+                    <span class="input-group-btn">
+            <button class="btn btn-primary btnDesign" type="button"
+              (click)="searchMovies()">Go!</button>
+          </span>
+                </section>
+            </section>
+        </section>
+    </section>
+
+    <br>
+    <h1 class="listing__title text-center" *ngIf="searchRes"> {{totalResultsearch}} Movies found</h1>
+
+    <ng-container *ngIf="searchRes">
+        <section class="row" *ngIf="!loader">
+            <section class="col-md-2 listing__items" *ngFor="let movie of searchRes |
+        slice:0:18">
+
+                <section class="listing-item-style">
+                    <img *ngIf="movie?.poster_path" src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{movie?.poster_path}}" [alt]="movie.title ? movie.title : movie.name">
+                    <img *ngIf="!movie?.poster_path" src="assets/images/default-movie.png" [alt]="movie.title ? movie.title : movie.name">
+                    <h6>{{ movie?.title }}</h6>
+                    <p class="rate"><i class="material-icons">star</i><span>{{movie?.popularity}}</span>
+                    </p>
+
+                    <div class="overview bg-red">
+                        <h2 class="title">description</h2>
+                        <div class="text">{{movie?.overview}}</div>
+                    </div><br><br>
+                    <p class="year"><span>{{movie?.release_date | date: 'yyyy/MM/dd'}}</span>
+                    </p>
+
+                </section>
+
+            </section>
+            <mat-paginator class="text-center mx-lg-auto" [length]="totalResultsearch" [pageSize]="20" (page)="changePagesearch($event)"></mat-paginator>
+        </section>
+    </ng-container>
+    <section>
+        <section class="row" *ngIf="!searchRes">
+            <section class="col-md-2 listing__items" *ngFor="let movie of popular | slice:0:18">
+                <section class="listing-item-style">
+                    <img src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{movie?.poster_path}}" [alt]="movie.title ? movie.title : movie.name">
+                    <img *ngIf="!movie?.poster_path" src="assets/images/default-movie.png" [alt]="movie.title ? movie.title : movie.name">
+
+                    <h6>{{ movie?.title }}</h6>
+
+                    <p class="rate"><i class="material-icons">star</i><span>{{movie?.popularity}}</span>
+                    </p>
+                    <div class="overview ">
+                        <div class="text">{{movie?.overview}}</div>
+                    </div><br><br>
+                    <p class="year"><span>{{movie?.release_date | date: 'yyyy/MM/dd'}}</span>
+                    </p>
+
+
+                </section>
+            </section>
+        </section>
+        <mat-paginator class="text-center mx-lg-auto" [length]="totalResults" [pageSize]="20" (page)="changePage($event)"></mat-paginator>
+    </section>
+
+</section>

@@ -1,0 +1,19 @@
+<br><br><br><br>
+<div class="listing">
+    <div class="listing__head">
+        <h3 class="listing__title">Trending Movies</h3>
+        <a [routerLink]="['/movies']" routerLinkActive="router-link-active" class="listing__explore">
+            <strong>Explore All</strong>
+        </a>
+    </div>
+
+
+    <p-carousel [value]="popular" [numVisible]="4" [numScroll]="1" [circular]="false" *ngIf="!loader" [responsiveOptions]="responsiveOptions" [autoplayInterval]="3000" class="p-carousel-dots-container">
+        <ng-template let-movie pTemplate="item">
+            <img *ngIf="movie?.poster_path" src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{movie?.poster_path}}">
+            <img *ngIf="!movie?.poster_path" src="assets/images/default-movie.png">
+            <h3>{{ movie?.title }}</h3>
+            <p class="rate"><i class="material-icons">star</i><span>{{movie?.popularity}}</span></p>
+        </ng-template>
+    </p-carousel>
+</div>

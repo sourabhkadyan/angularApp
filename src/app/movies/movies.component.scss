@@ -1,0 +1,34 @@
+.text {
+    color: #fff;
+    padding: 0.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+mat-paginator {
+    background: #212121;
+}
+
+mat-paginator {
+    color: #fff;
+}
+
+.searchdesign {
+    height: 44px;
+    background: #212121;
+    border: 1px solid #716e6e;
+    color: #fff;
+    font-size: 15px;
+}
+
+.btnDesign {
+    height: 44px;
+    border-radius: 0;
+    width: 55px;
+    background: #dc4666;
+    border: #dc4666;
+}
